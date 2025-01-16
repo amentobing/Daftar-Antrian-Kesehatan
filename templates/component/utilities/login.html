@@ -1,0 +1,33 @@
+<div class="modal fade" id="login" tabindex="-1" aria-labelledby="login-modal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="loginLabel">Masuk <a href="" class="text-reset text-decoration-none border rounded-pill px-1">?</a></h1>
+        <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+        <form method="post" class="row" id="loginModal">
+          <div class="mb-3">
+            <label for="username" class="form-label">Username#ID</label>
+            <div class="row">
+              <div class="col-7">
+                <input type="text" name="username" id="username" class="form-control" placeholder="Username" required />
+                <div class="invalid-feedback">Masukkan Username Dengan Benar...</div>
+              </div>
+              <div class="col-1 px-0" style="width: 3%"><span class="fs-3 align-text-bottom">#</span></div>
+              <div class="col"><input type="text" name="id" id="id" class="form-control" placeholder="ID" required /></div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" name="password" id="password" class="form-control" placeholder="Masukkan Password..." required />
+          </div>
+          <div class="mb-3">
+            <button type="submit" class="btn btn-secondary">Masuk</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

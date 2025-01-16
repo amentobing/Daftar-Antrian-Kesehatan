@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="id, in">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{pageName}} {{appSName}} {{faskesName}}</title>
+    <link href="{{url_for('static', filename='css/bootstrap.min.css')}}" rel="stylesheet" />
+    <script src="{{url_for('static', filename='js/bootstrap.bundle.min.js')}}"></script>
+    <meta name="description" content="{{appDesc}}" />
+    <meta name="keywords" content="Kesehatan, Daftar Antrian, Informatika, Informatika Kesehatan" />
+    <meta name="author" content="{{appAuthor}}" />
+    <style>
+      @media (max-width: 991.98px) {
+        #nav-mid {
+          display: none !important;
+        }
+        .navbar {
+          padding-left: 0 !important;
+          padding-right: 0 !important;
+        }
+        #appName {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-body-tertiary">
+    <nav class="navbar navbar-expand-sm border-bottom px-5 py-2">
+      <div class="container-fluid" id="nav-top">
+        <div class="navbar-brand">
+          <span class="navbar-brand mb-0 text-info"
+            ><span class="fw-bold" id="appName">{{appSName}} <br /></span>
+            <span class="text-decoration-underline h5 text-danger" id="brand">{{faskesName}}</span>
+          </span>
+        </div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu" aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbar-menu" style="flex-grow: 0">
+          <ul class="navbar-nav me-auto justify-content-end fw-bold">
+            <li class="nav-item">
+              <button class="nav-link active" onclick="window.location.href = '/'">Beranda</button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid px-5 py-2 border-bottom d-flex align-items-center" id="nav-mid">
+      <div class="title fw-2 col-2 text-secondary" style="padding-left: 12px; width: 12%">Tentang Aplikasi</div>
+      <div class="content col">
+        <marquee behavior="" direction="left" scrollamount="5" class="align-middle">{{appDesc}}</marquee>
+      </div>
+    </div>
+
+    {% block loginPage %}
+    <div class="modal fade" id="login" tabindex="-1" aria-labelledby="login-modal" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="loginLabel">Masuk <a href="" class="text-reset text-decoration-none border rounded-pill px-1">?</a></h1>
+            <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <div class="modal-body">
+            <form method="post" class="row" id="loginModal">
+              <div class="mb-3">
+                <label for="username" class="form-label">Username#ID</label>
+                <div class="row">
+                  <div class="col-7">
+                    <input type="text" name="username" id="username" class="form-control" placeholder="Username" required />
+                    <div class="invalid-feedback">Masukkan Username Dengan Benar...</div>
+                  </div>
+                  <div class="col-1 px-0" style="width: 3%"><span class="fs-3 align-text-bottom">#</span></div>
+                  <div class="col"><input type="text" name="id" id="id" class="form-control" placeholder="ID" required /></div>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" name="password" id="password" class="form-control" placeholder="Masukkan Password..." required />
+              </div>
+              <div class="mb-3">
+                <button type="submit" class="btn btn-secondary">Masuk</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endblock %} {% block content %} {% endblock %}
+  </body>
+</html>

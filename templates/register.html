@@ -1,0 +1,39 @@
+{% extends 'component/main.html' %} {% block content %}
+<div class="container-xl">
+  <header class="border-bottom pt-4">
+    <p class="h4 pt-4 text-center">Buat Akun Baru</p>
+  </header>
+  <section class="d-flex align-items-start justify-content-center pt-5">
+    <div class="registerForm border rounded px-2 py-4">
+      <form class="row g-3 justify-content-center" method="post">
+        <div class="col-10 col-md-5 form-floating" style="padding-left: 0">
+          <input type="text" name="namaDepan" id="namaDepan" class="form-control {{namaDepanErr}}" placeholder="Nama Depan" value="{{namaDepan}}" required />
+          <label for="namaDepan">Nama Depan</label>
+          <div class="invalid-feedback">Nama tidak mengandung angka atau simbol!</div>
+        </div>
+        <div class="col-10 col-md-5 form-floating" style="padding-left: 0">
+          <input type="text" name="namaBelakang" id="namaBelakang" class="form-control {{namaBelakangErr}}" placeholder="Nama Belakang" value="{{namaBelakang}}" required />
+          <label for="namaBelakang">Nama Belakang</label>
+          <div class="invalid-feedback">Nama tidak boleh mengandung angka atau simbol!</div>
+        </div>
+        <div class="col-10 ps-0">
+          <label for="email">Email</label>
+          <input type="email" name="email" id="email" class="form-control" value="{{email}}" required />
+        </div>
+        <div class="col-10 ps-0">
+          <label for="password">Password</label>
+          <input type="password" name="new-password" id="new-password" class="form-control {{passwordErr}}" required />
+        </div>
+        <div class="col-10 ps-0">
+          <label for="password2">Confirm Password</label>
+          <input type="password" name="password2" id="password2" class="form-control {{passwordErr}}" required />
+          <div class="invalid-feedback">Password Tidak Sama!</div>
+        </div>
+        <div class="col-10 ps-0">
+          <button type="submit" class="btn btn-outline-dark">Daftar</button>
+        </div>
+      </form>
+    </div>
+  </section>
+</div>
+{% endblock %}
