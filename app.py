@@ -1,10 +1,14 @@
 from flask import Flask, render_template, request, redirect, session
-from markupsafe import escape
 from time import time
+from dotenv import load_dotenv
 import string
 import random
 import datetime
+import os
 
+from core.connection import dbConnection
+
+load_dotenv()
 app = Flask(__name__)
 
 appSName = "Pendaftaran Kesehatan"
@@ -14,19 +18,24 @@ faskesName = "RS Sentra Medika - Depok"  # Contoh
 
 app.secret_key = '!@#$%^&'
 
+# dbUser = dbConnection(os.getenv('mongodb_connection'),
+#                       os.getenv('mongodb_dbName'), os.getenv('mongodb_dbCol_user'))
 
 # Default Rendered Template
+
+
 def renderDefaultTemplate(page: str, pageName: str):
     return render_template(page, appAuthor=appAuthor, appDesc=appDesc, appSName=appSName, faskesName=faskesName, pageName=f"{pageName} -")
 
+
+# result = dbUser.find({'email': 'admin@faskes.id'}).max_await_time_ms(60000)
+# print(result)
+
 # Check Logged Session [! BLOM SELESAI]
-
-
-def checkLogged():
-    if 'id' in session:
-        ""
-    else:
-        redirect("/")
+# def checkSession():
+#     if 'id' and 'email' not in session:
+#         redirect("/")
+#     else:
 
 
 @app.route("/")
@@ -68,7 +77,10 @@ def register():
             for i in range(28):
                 unixID += random.choice(chars)
             print(unixID, request.form['email'])
-            # session['id'] = unixID
+
+            session['email'] = request.form['email']
+            session['id'] = unixID
+
             return redirect("/dashboard")
         else:
             dataPerson["namaDepan"] = request.form['namaDepan']
@@ -76,6 +88,10 @@ def register():
             dataPerson["email"] = request.form['email']
 
     return render_template("register.html", appAuthor=appAuthor, appDesc=appDesc, appSName=appSName, faskesName=faskesName, pageName=pageName, namaDepanErr=namaDepanErr, namaBelakangErr=namaBelakangErr, passwordErr=passwordErr, namaDepan=dataPerson['namaDepan'], namaBelakang=dataPerson["namaBelakang"], email=dataPerson["email"])
+
+
+# @app.route("/dashboard")
+# def dashboard():
 
 
 if __name__ == '__main__':

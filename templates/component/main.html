@@ -28,9 +28,9 @@
     <nav class="navbar navbar-expand-sm border-bottom px-5 py-2">
       <div class="container-fluid" id="nav-top">
         <div class="navbar-brand">
-          <span class="navbar-brand mb-0 text-info"
+          <span class="navbar-brand mb-0" style="color: #0d5e6d"
             ><span class="fw-bold" id="appName">{{appSName}} <br /></span>
-            <span class="text-decoration-underline h5 text-danger" id="brand">{{faskesName}}</span>
+            <span class="text-decoration-underline h5" id="brand" style="color: #a4192a">{{faskesName}}</span>
           </span>
         </div>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu" aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
@@ -88,5 +88,30 @@
       </div>
     </div>
     {% endblock %} {% block content %} {% endblock %}
+
+    <script>
+      var idleTime = 0;
+      $(document).ready(() => {
+        var idleInterval = setInterval(timeCount, 60000);
+
+        $(this).mousemove((e) => {
+          idleTime = 0;
+        });
+        $(this).scroll((e) => {
+          idleTime = 0;
+        });
+        $(this).keypress((e) => {
+          idleTime = 0;
+        });
+      });
+
+      function timeCount() {
+        idleTime = idleTime + 1;
+        if (idleTime > 0) {
+          sessionStorage.clear();
+          window.location.reload();
+        }
+      }
+    </script>
   </body>
 </html>
