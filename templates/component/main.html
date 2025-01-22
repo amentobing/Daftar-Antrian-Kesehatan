@@ -22,15 +22,22 @@
           display: none;
         }
       }
+
+      #appBrand {
+        color: #0a5d70 !important;
+      }
+      #appFN {
+        color: #a01828 !important;
+      }
     </style>
   </head>
   <body class="bg-body-tertiary">
     <nav class="navbar navbar-expand-sm border-bottom px-5 py-2">
       <div class="container-fluid" id="nav-top">
         <div class="navbar-brand">
-          <span class="navbar-brand mb-0 text-info"
+          <span class="navbar-brand mb-0" id="appBrand"
             ><span class="fw-bold" id="appName">{{appSName}} <br /></span>
-            <span class="text-decoration-underline h5 text-danger" id="brand">{{faskesName}}</span>
+            <span class="text-decoration-underline h5" id="appFN">{{faskesName}}</span>
           </span>
         </div>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu" aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
