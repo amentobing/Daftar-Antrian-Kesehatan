@@ -19,7 +19,12 @@ app.secret_key = '!@#$%^&'
 def renderDefaultTemplate(page: str, pageName: str):
     return render_template(page, appAuthor=appAuthor, appDesc=appDesc, appSName=appSName, faskesName=faskesName, pageName=f"{pageName} -")
 
-# Check Logged Session [! BLOM SELESAI]
+# Check Logged Session
+
+
+def checkSession():
+    if 'id' and 'email' in session:
+        if 'id' == session
 
 
 def checkLogged():
@@ -62,20 +67,32 @@ def register():
 
         # Success
         if namaDepanErr == "is-valid" and namaBelakangErr == "is-valid" and passwordErr == "is-valid":
-
             chars = string.ascii_lowercase+string.ascii_uppercase+"@!/"+string.digits
             unixID = ''
             for i in range(28):
                 unixID += random.choice(chars)
             print(unixID, request.form['email'])
-            # session['id'] = unixID
+
+            session['email'] = request.form['email']
+            session['id'] = unixID
+
             return redirect("/dashboard")
+
         else:
             dataPerson["namaDepan"] = request.form['namaDepan']
             dataPerson["namaBelakang"] = request.form['namaBelakang']
             dataPerson["email"] = request.form['email']
 
     return render_template("register.html", appAuthor=appAuthor, appDesc=appDesc, appSName=appSName, faskesName=faskesName, pageName=pageName, namaDepanErr=namaDepanErr, namaBelakangErr=namaBelakangErr, passwordErr=passwordErr, namaDepan=dataPerson['namaDepan'], namaBelakang=dataPerson["namaBelakang"], email=dataPerson["email"])
+
+
+# @app.before_request
+# def beforeReq():
+#     if ''
+
+@app.route('/dashboard')
+def dasboard():
+    return f"{session['id']}"
 
 
 if __name__ == '__main__':
