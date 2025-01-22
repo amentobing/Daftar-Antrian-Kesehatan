@@ -1,10 +1,14 @@
 from flask import Flask, render_template, request, redirect, session
-from markupsafe import escape
 from time import time
+from dotenv import load_dotenv
 import string
 import random
 import datetime
+import os
 
+from core.connection import dbConnection
+
+load_dotenv()
 app = Flask(__name__)
 
 appSName = "Pendaftaran Kesehatan"
@@ -14,8 +18,12 @@ faskesName = "RS Sentra Medika - Depok"  # Contoh
 
 app.secret_key = '!@#$%^&'
 
+# dbUser = dbConnection(os.getenv('mongodb_connection'),
+#                       os.getenv('mongodb_dbName'), os.getenv('mongodb_dbCol_user'))
 
 # Default Rendered Template
+
+
 def renderDefaultTemplate(page: str, pageName: str):
     return render_template(page, appAuthor=appAuthor, appDesc=appDesc, appSName=appSName, faskesName=faskesName, pageName=f"{pageName} -")
 
@@ -84,15 +92,6 @@ def register():
             dataPerson["email"] = request.form['email']
 
     return render_template("register.html", appAuthor=appAuthor, appDesc=appDesc, appSName=appSName, faskesName=faskesName, pageName=pageName, namaDepanErr=namaDepanErr, namaBelakangErr=namaBelakangErr, passwordErr=passwordErr, namaDepan=dataPerson['namaDepan'], namaBelakang=dataPerson["namaBelakang"], email=dataPerson["email"])
-
-
-# @app.before_request
-# def beforeReq():
-#     if ''
-
-@app.route('/dashboard')
-def dasboard():
-    return f"{session['id']}"
 
 
 if __name__ == '__main__':
