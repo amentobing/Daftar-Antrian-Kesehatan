@@ -18,7 +18,8 @@
         </div>
         <div class="col-10 ps-0">
           <label for="email">Email</label>
-          <input type="email" name="email" id="email" class="form-control" value="{{email}}" required />
+          <input type="email" name="email" id="email" class="form-control {{emailErr}}" value="{{email}}" required />
+          <div class="invalid-feedback">Email Sudah Digunakan!</div>
         </div>
         <div class="col-10 ps-0">
           <label for="password">Password</label>
@@ -33,6 +34,10 @@
           <button type="submit" class="btn btn-outline-dark">Daftar</button>
         </div>
       </form>
+      <div class="d-flex justify-content-center align-items-center my-2">
+        <div class="text-center pe-2">Sudah Punya Akun?</div>
+        <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#login">Masuk</button>
+      </div>
     </div>
   </section>
 </div>

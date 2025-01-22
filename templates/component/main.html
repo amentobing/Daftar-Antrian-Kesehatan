@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id, in">
+<html lang="id">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -32,12 +32,17 @@
     </style>
   </head>
   <body class="bg-body-tertiary">
+    {% if errorLogin %}
+    <div class="alert alert-danger alert-dismissible" role="alert">
+      <div class="text-center">Email/Password yang anda masukkan Salah!</div>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endif %}
     <nav class="navbar navbar-expand-sm border-bottom px-5 py-2">
       <div class="container-fluid" id="nav-top">
         <div class="navbar-brand">
           <span class="navbar-brand mb-0" id="appBrand" <span class="navbar-brand mb-0" style="color: #0d5e6d"
             ><span class="fw-bold" id="appName">{{appSName}} <br /></span>
-            <span class="text-decoration-underline h5" id="appFN">{{faskesName}}</span>
             <span class="text-decoration-underline h5" id="brand" style="color: #a4192a">{{faskesName}}</span>
           </span>
         </div>
@@ -49,19 +54,31 @@
             <li class="nav-item">
               <button class="nav-link active" onclick="window.location.href = '/'">Beranda</button>
             </li>
+            {% if loginCheck %}
+            <li class="nav-item">
+              <button class="nav-link" onclick="window.location.href = '/dashboard'">Dashboard</button>
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <button class="nav-link" onclick="window.location.href = '/daftar'">Daftar</button>
+            </li>
+            <li class="nav-item">
+              <button class="nav-link" data-bs-toggle="modal" data-bs-target="#login">Masuk</button>
+            </li>
+            {% endif %}
           </ul>
         </div>
       </div>
     </nav>
 
     <div class="container-fluid px-5 py-2 border-bottom d-flex align-items-center" id="nav-mid">
-      <div class="title fw-2 col-2 text-secondary" style="padding-left: 12px; width: 12%">Tentang Aplikasi</div>
+      <div class="title fw-2 col-2" style="padding-left: 12px; width: 12%; color: #51565c">Tentang Aplikasi</div>
       <div class="content col">
         <marquee behavior="" direction="left" scrollamount="5" class="align-middle">{{appDesc}}</marquee>
       </div>
     </div>
 
-    {% block loginPage %}
+    {% if not loginCheck %}
     <div class="modal fade" id="login" tabindex="-1" aria-labelledby="login-modal" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -73,15 +90,8 @@
           <div class="modal-body">
             <form method="post" class="row" id="loginModal">
               <div class="mb-3">
-                <label for="username" class="form-label">Username#ID</label>
-                <div class="row">
-                  <div class="col-7">
-                    <input type="text" name="username" id="username" class="form-control" placeholder="Username" required />
-                    <div class="invalid-feedback">Masukkan Username Dengan Benar...</div>
-                  </div>
-                  <div class="col-1 px-0" style="width: 3%"><span class="fs-3 align-text-bottom">#</span></div>
-                  <div class="col"><input type="text" name="id" id="id" class="form-control" placeholder="ID" required /></div>
-                </div>
+                <label for="email" class="form-label">Email</label>
+                <input type="text" name="email" id="email" class="form-control" placeholder="Email" required />
               </div>
               <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
@@ -95,7 +105,7 @@
         </div>
       </div>
     </div>
-    {% endblock %} {% block content %} {% endblock %}
+    {% endif %} {% block content %} {% endblock %}
 
     <script>
       var idleTime = 0;
